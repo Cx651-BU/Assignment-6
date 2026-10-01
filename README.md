@@ -42,7 +42,16 @@ the lazy dog
 
 
 > [!IMPORTANT]
-> Implement `engine.c` and `grep.c` to take in an input filepath and a target word and report the number of occurrences of each word.
+> - Task: Implement `engine.c` and `grep.c` to take in an input filepath and a target word and report the number of occurrences of each word.
+>   - At this point you should be able to run commands in the form:  `./grep instance data/warnpeace.txt the` to count the instances of the word "the" for example.
+
+The output of your grep command should look like the following:
+```
+$ ./grep-openmp instance data/small.txt the
+Found: 2 of the in data/small.txt
+res.instances[0]: the quick
+res.instances[1]: the lazy dog
+```
 
 Once you have completed this step, you should be able to pass `./test 0`, `./test 1`, `./test 2`, `./test 3`:
 
@@ -125,7 +134,7 @@ pthread_join(threads[i], NULL);
 ```
 
 > [!IMPORTANT]
-> Implement `engine-parallel.c` to take in an input filepath and a target word and report the number of occurrences of each word with multiple workers and data parallelism!
+> - Task: Implement `engine-parallel.c` to take in an input filepath and a target word and report the number of occurrences of each word with multiple workers and data parallelism!
 
 ## Preventing Data Races
 
@@ -190,8 +199,8 @@ A good starting place might be to structure your code as follows:
 ```
 
 > [!IMPORTANT]
-> Implement `engine-openmp.c` using a parallel for loop and OpenMP. Again, remember to avoid data races.
-> Also ensure that your parallel implementation with openmp is faster than your serial solution.
+> - Task: Implement `engine-openmp.c` using a parallel for loop and OpenMP. Again, remember to avoid data races.
+>   - Also ensure that your parallel implementation with openmp is faster than your serial solution.
 > - Task: In `questions.txt` explain how your parallel solution implemented in openmp differs from using pthread POSIX api directly. Label your answer `(3)`.
 
 At this point, running `make test-openmp` and `./test-openmp 0`,`./test-openmp 1`,`./test-openmp 2`,`./test-openmp 3` should all pass.
