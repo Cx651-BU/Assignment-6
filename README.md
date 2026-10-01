@@ -133,6 +133,7 @@ You may notice that your grep-multi.c sometimes reports an incorrect count. Why 
 
 > [!IMPORTANT]
 > Structure your code to prevent data races. Either use a `mutex` or restructure your code to avoid shared global variables.
+> - Task: In `questions.txt` explain if you encountered any data races and how you structured your code to avoid them. Label your answer `(2)`.
 
 At this point, running `make test-parallel` and `./test-parallel 0`,`./test-parallel 1`,`./test-parallel 2`,`./test-parallel 3` should all pass.
 
@@ -191,8 +192,21 @@ A good starting place might be to structure your code as follows:
 > [!IMPORTANT]
 > Implement `engine-openmp.c` using a parallel for loop and OpenMP. Again, remember to avoid data races.
 > Also ensure that your parallel implementation with openmp is faster than your serial solution.
+> - Task: In `questions.txt` explain how your parallel solution implemented in openmp differs from using pthread POSIX api directly. Label your answer `(3)`.
 
 At this point, running `make test-openmp` and `./test-openmp 0`,`./test-openmp 1`,`./test-openmp 2`,`./test-openmp 3` should all pass.
 
 Also, running `source test.sh` should pass.
 When you are happy with your score, submit all files to Gradescope.
+
+## Submitting on Gradescope
+
+To submit on Gradescope, submit all the files in this directory to the assignment upload.
+
+You do not need to upload the `data/` subdirectory.
+
+**DO NOT upload a zip.** Use Shift to select all the files in your assignment directory instead.
+
+Note: To download files from google colab, navigate to the `Assignment-6` directory that should be saved in your **Google Drive**. (Assuming you did all your work in `/content/drive/MyDrive/Assignment-6`). Clicking the three vertical dots shows a "download" option that will download all files to your local computer for upload to gradescope.
+
+You should see the autograder run and report a score. Ensure that you are happy with this score! Feel free to resubmit as many times as you wish before the deadline.
