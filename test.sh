@@ -1,4 +1,4 @@
-binary="test grep grep-openmp grep-parallel"
+binary="test test-parallel test-openmp grep grep-parallel grep-openmp"
 
 make clean; make
 
@@ -7,7 +7,7 @@ score=0
 for file in $binary; do
     if [[ ! -f "$file" ]]; then
         echo "FAIL: $file not made"
-        echo "SCORE: $score/7"
+        echo "SCORE: $score/15"
         exit 0
     fi
 done
@@ -66,7 +66,7 @@ else
 
 fi
 
-echo "TEST: grep-parallel is faster than grep"
+echo "TEST: grep-openmp is faster than grep"
 time_file=$(mktemp)
 
 /usr/bin/time -f "%e" -o "$time_file" ./grep instance data/warnpeace.txt help > /dev/null
