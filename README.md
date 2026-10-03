@@ -9,7 +9,7 @@ Certain aspects of the worker’s tasks—reading the file –will be IO bound a
 You will also need to use mutexes or strategize about shared data to carefully control your worker threads accesses to shared data structures and avoid data races! 
 
 
-# Serial Word Search
+## Part 1: Serial Word Search
 
 First, let's implement two word searching utilities:
 - search_count: returns the integer count of all occurrences of the target word in the file 
@@ -43,11 +43,11 @@ the lazy dog
 
 > [!IMPORTANT]
 > - Task: Implement `engine.c` and `grep.c` to take in an input filepath and a target word and report the number of occurrences of each word.
->   - At this point you should be able to run commands in the form:  `./grep instance data/warnpeace.txt the` to count the instances of the word "the" for example.
+>   - At this point you should be able to run commands in the form:  `./grep instance data/small.txt the` to count the instances of the word "the" for example.
 
 The output of your grep command should look like the following:
 ```
-$ ./grep-openmp instance data/small.txt the
+$ ./grep instance data/small.txt the
 Found: 2 of the in data/small.txt
 res.instances[0]: the quick
 res.instances[1]: the lazy dog
@@ -74,7 +74,7 @@ Test Test Instance 2          : 1/1
 Total: 1/1
 ```
 
-## Measuring and Timing Word Search
+### Measuring and Timing Word Search
 
 Let's time our word search. How long does it take to complete?
 
@@ -86,9 +86,9 @@ time ./grep instance data/warnpeace.txt help
 > Describe the output of the `time` command in `questions.txt`. Label your answer `(1)`.
 
 
-# Parallel Word Search
+## Part 2: Parallel Word Search
 
-Now we will be implementing grep-multi.c with POSIX thread API. Our input file is quite long. We will be using **data parallelism** to have a worker thread each work on a chunk of a file, all in parallel.
+Now we will be implementing engine-parallel.c with POSIX thread API. Our input file is quite long. We will be using **data parallelism** to have a worker thread each work on a chunk of a file, all in parallel.
 
 
 You will want to use `pthread_create` to create your worker threads:
@@ -136,9 +136,9 @@ pthread_join(threads[i], NULL);
 > [!IMPORTANT]
 > - Task: Implement `engine-parallel.c` to take in an input filepath and a target word and report the number of occurrences of each word with multiple workers and data parallelism!
 
-## Preventing Data Races
+### Preventing Data Races
 
-You may notice that your grep-multi.c sometimes reports an incorrect count. Why is this?
+You may notice that your engine-parallel.c sometimes reports an incorrect count. Why is this?
 
 > [!IMPORTANT]
 > Structure your code to prevent data races. Either use a `mutex` or restructure your code to avoid shared global variables.
@@ -146,7 +146,7 @@ You may notice that your grep-multi.c sometimes reports an incorrect count. Why 
 
 At this point, running `make test-parallel` and `./test-parallel 0`,`./test-parallel 1`,`./test-parallel 2`,`./test-parallel 3` should all pass.
 
-## Measuring and Timing Word Search
+### Measuring and Timing Word Search
 
 Let's time our parallel word search. How long does it take to complete?
 To pass this task it will need to be *faster* that your serial implementation!
@@ -155,7 +155,7 @@ To pass this task it will need to be *faster* that your serial implementation!
 time ./grep-parallel instance data/warnpeace.txt help
 ```
 
-# Parallelization Libraries (OpenMP)
+## Part 3: Parallelization Libraries (OpenMP)
 
 There was a lot of overhead that we as programmers had to do to parallelize our previous code! We now ask ourselves-- is there an easier way?
 A lot of talented programmers have spent lots of time and effort creating existing libraries that allow us to parallelize our code in an easier manner that can even be **faster!**
