@@ -208,6 +208,19 @@ At this point, running `make test-openmp` and `./test-openmp 0`,`./test-openmp 1
 Also, running `source test.sh` should pass.
 When you are happy with your score, submit all files to Gradescope.
 
+## Timing on the Autograder
+
+The autograder will benchmark your two parallel implementations against your serial implementation.
+The autograder will test a random 1GB text file instead of warnpeace.txt.
+
+If you want to test this yourself locally: 
+```
+head -c 1073741824 /dev/urandom > data/bigfile.txt
+```
+
+Then, use `data/bigfile.txt` as the file you benchmark your two implementations with.
+You can time your program with the Linux `time` utility or an equivalent.
+
 ## Submitting on Gradescope
 
 To submit on Gradescope, submit all the files in this directory to the assignment upload.
